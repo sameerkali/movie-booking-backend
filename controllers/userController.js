@@ -2,9 +2,9 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// Register User (Superadmin, Schooladmin, Student)
+// Register User
 exports.register = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
 
   try {
     const userExists = await User.findOne({ email });
@@ -12,23 +12,23 @@ exports.register = async (req, res) => {
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
       name,
       email,
       password: hashedPassword,
-      role,
     });
 
     await user.save();
 
     // Generate token
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '24h',
     });
 
-    res.status(201).json({ token, user: { id: user._id, name: user.name, role: user.role } });
+    res.status(201).json({ token, user: { id: user._id, name: user.name } });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -50,11 +50,11 @@ exports.login = async (req, res) => {
     }
 
     // Generate token
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     });
 
-    res.json({ token, user: { id: user._id, name: user.name, role: user.role } });
+    res.json({ token, user: { id: user._id, name: user.name } });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
