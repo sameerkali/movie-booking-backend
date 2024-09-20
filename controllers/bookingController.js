@@ -1,5 +1,7 @@
 const Movie = require('../models/movieModel');
 const { updatePrice } = require('./pricingController'); 
+const socketIO = require('socket.io');
+let io;
 
 // Fetch available movies
 exports.getMovies = async (req, res) => {
