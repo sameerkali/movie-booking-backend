@@ -10,9 +10,13 @@ const http = require("http");
 dotenv.config();
 connectDB();
 
+
+
 const app = express();
 const server = http.createServer(app); 
 
+const io = initSocket(server); 
+app.set("io", io);
 
 app.use(cors());
 app.use(express.json());
@@ -26,7 +30,6 @@ app.get("/", (req, res)=>{
 }) 
 
 
-const io = initSocket(server);
 
 
 const PORT = process.env.PORT || 6699;
