@@ -1,13 +1,14 @@
 const socketIO = require('socket.io');
+const dotenv = require('dotenv');
 
 const initSocket = (server) => {
   const io = socketIO(server, {
     cors: {
-      origin: "http://localhost:5173", // Your frontend's URL
+      origin: process.env.FRONTEND_URL,
       methods: ["GET", "POST"],
       credentials: true,
     },
-    transports: ['websocket', 'polling'], // Allow WebSocket and fallback to polling
+    transports: ['websocket', 'polling'], 
   });
 
   io.on('connection', (socket) => {
