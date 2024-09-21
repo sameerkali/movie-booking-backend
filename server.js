@@ -18,7 +18,13 @@ const server = http.createServer(app);
 const io = initSocket(server); 
 app.set("io", io);
 
+
 app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
 app.use(express.json());
 
 

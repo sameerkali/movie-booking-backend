@@ -1,3 +1,5 @@
+
+
 const Movie = require('../models/movieModel');
 
 // Calculate the new price based on booked seats
