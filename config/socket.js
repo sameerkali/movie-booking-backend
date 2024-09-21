@@ -7,14 +7,12 @@ const initSocket = (server) => {
   io.on('connection', (socket) => {
     console.log('New client connected');
 
-    // Listen to seat reservation
     socket.on('reserveSeat', (data) => {
-      io.emit('seatUpdate', data); // Broadcast seat updates to all clients
+      io.emit('seatUpdate', data); 
     });
 
-    // Broadcast price update to all clients
     socket.on('priceUpdate', (data) => {
-      io.emit('updatePrice', data); // Broadcast the updated price
+      io.emit('updatePrice', data);
     });
 
     socket.on('disconnect', () => {

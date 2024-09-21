@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define seat schema (for each movie show)
 const seatSchema = new mongoose.Schema({
   number: {
     type: String,
@@ -13,7 +12,6 @@ const seatSchema = new mongoose.Schema({
   },
 });
 
-// Define movie schema with dynamic pricing
 const movieSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -24,7 +22,7 @@ const movieSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  seats: [seatSchema], // An array of seats for each movie showtime
+  seats: [seatSchema],
   basePrice: {
     type: Number,
     required: true,
