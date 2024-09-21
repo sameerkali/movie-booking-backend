@@ -19,7 +19,11 @@ app.use(express.json());
 
 
 app.use("/api/users", userRoutes); 
-app.use("/api/bookings", bookingRoutes); 
+app.use("/api/bookings", bookingRoutes);
+
+app.get("/", (req, res)=>{
+  res.json({"admin": "sameer faridi", "project": "movie booking backend"})
+}) 
 
 
 const io = initSocket(server);

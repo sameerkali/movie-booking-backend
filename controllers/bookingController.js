@@ -107,3 +107,20 @@ exports.confirmBooking = async (req, res) => {
       res.status(500).json({ message: 'Error confirming booking', error: error.message });
     }
   };
+
+
+  exports.getMovieById = async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const movie = await Movie.findById(id);
+  
+      if (!movie) {
+        return res.status(404).json({ message: 'Movie not found' });
+      }
+  
+      res.json(movie);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching movie', error: error.message });
+    }
+  };

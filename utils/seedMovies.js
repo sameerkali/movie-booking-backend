@@ -11,12 +11,11 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-// Helper function to generate 200 available seats
 const generateSeats = () => {
   const seats = [];
   for (let i = 1; i <= 200; i++) {
     seats.push({
-      number: `A${i}`, // Seat numbers like A1, A2, ..., A200
+      number: `A${i}`, 
       status: 'available',
     });
   }
