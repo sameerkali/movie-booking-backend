@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const generateSeats = () => {
   const seats = [];
-  for (let i = 1; i <= 60; i++) {
+  for (let i = 1; i <= 50; i++) {
     seats.push({
       number: `A${i}`, 
       status: 'available',

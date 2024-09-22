@@ -53,7 +53,7 @@ exports.reserveSeat = async (req, res) => {
         await updatedMovie.save();
         io.emit('seatUpdate', { movieId, seatNumber, status: 'available' });
       }
-    }, 30000); // 30 secounds
+    }, 120000); // 2 min
 
     res.status(200).json({ message: 'Seat reserved successfully', movie });
   } catch (error) {

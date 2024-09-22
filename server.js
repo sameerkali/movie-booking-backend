@@ -25,14 +25,15 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true,
 }));
+
 app.use(express.json());
 
 
-app.use("/api/users", userRoutes); 
-app.use("/api/bookings", bookingRoutes);
+app.use("/api/users", userRoutes); //Auth routes
+app.use("/api/bookings", bookingRoutes); //all other routes
 
 app.get("/", (req, res)=>{
-  res.json({"admin": "sameer faridi", "project": "movie booking backend"})
+  res.json({"status": "Backend alive", "project": "movie booking backend"})
 }) 
 
 
