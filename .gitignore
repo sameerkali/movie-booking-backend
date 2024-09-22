@@ -1,2 +1,2 @@
-.env
+# I push env file because of you in case you need to run it in your local system 
 node_modules
